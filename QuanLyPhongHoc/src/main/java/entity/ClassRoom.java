@@ -46,6 +46,16 @@ public class ClassRoom implements Serializable {
         this.diaChi = diaChi;
         this.csvc = csvc;
     }
+     public ClassRoom( String ma, String ten, String loaiPhong, int sucChua,String diaChi, List<String> csvc) {
+        super();
+      
+        this.ma = ma;
+        this.ten = ten;
+        this.loaiPhong = loaiPhong;
+        this.sucChua = sucChua;
+        this.diaChi = diaChi;
+        this.csvc = csvc;
+    }
 
     public int getId() {
         return id;

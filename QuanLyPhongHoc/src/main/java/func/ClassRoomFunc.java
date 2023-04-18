@@ -6,11 +6,16 @@ package func;
 
 import entity.ClassRoom;
 import entity.ClassRoomXML;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import utils.FileUtils;
 import java.util.List;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 
 public class ClassRoomFunc {
@@ -45,6 +50,7 @@ public class ClassRoomFunc {
         classroom.setId(id);
         listClassroomes.add(classroom);
         writeListStudents(listClassroomes);
+        
     }
        public void edit(ClassRoom classroom) {
         int size = listClassroomes.size();
@@ -103,6 +109,42 @@ public class ClassRoomFunc {
             }
         });
     }
+    
+    public ClassRoom findClassRoomById(String id) {
+    ClassRoom classroom = null;
+    try {
+        JAXBContext context = JAXBContext.newInstance(ClassRoomXML.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        ClassRoomXML ClassRoomXML = (ClassRoomXML) unmarshaller.unmarshal(new File(CLASSROOM_FILE_NAME));
+        for (ClassRoom cr : ClassRoomXML.getClassRoom()) {
+            if (cr.getMa().equals(id)){
+                classroom = cr;
+                break;
+            }
+        }
+    } catch (JAXBException e) {
+        e.printStackTrace();
+    }
+    return classroom;
+}
+    
+     public ClassRoom findClassRoomBySucChua(int sucChua) {
+    ClassRoom classroom = null;
+    try {
+        JAXBContext context = JAXBContext.newInstance(ClassRoomXML.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        ClassRoomXML ClassRoomXML = (ClassRoomXML) unmarshaller.unmarshal(new File(CLASSROOM_FILE_NAME));
+        for (ClassRoom cr : ClassRoomXML.getClassRoom()) {
+            if (cr.getSucChua() == sucChua){
+                classroom = cr;
+                break;
+            }
+        }
+    } catch (JAXBException e) {
+        e.printStackTrace();
+    }
+    return classroom;
+}
 
     public List<ClassRoom> getListClassRoomes() {
         return listClassroomes;
@@ -113,7 +155,14 @@ public class ClassRoomFunc {
     }
     
     public static void main(String[] args) {
-        new ClassRoomFunc().readListClassRoomes().forEach(s -> System.out.println(s.toString()));
+       
+//        ClassRoomFunc cl = new ClassRoomFunc();
+//        ClassRoom cr = new ClassRoom("A03","Phong A03","Phong sach",20,"Toa B2",Arrays.asList("Bàn ghế", "Bảng", "Máy chiếu", "Máy tính", "Màn hình"));
+//        cl.add(cr);
+//        new ClassRoomFunc().readListClassRoomes().forEach(s -> System.out.println(s.toString()));
+//        new ClassRoomFunc().findClassRoomById("A02");
+        System.out.println(new ClassRoomFunc().findClassRoomBySucChua(100));
+        System.out.println(new ClassRoomFunc().findClassRoomById("A01"));
     }
     
 }

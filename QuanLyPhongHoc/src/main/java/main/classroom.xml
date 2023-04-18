@@ -5,7 +5,7 @@
     <ma>A01</ma>
     <ten>Phong hoc A01</ten>
     <loaiPhong>Phong May</loaiPhong>
-    <sucChua>50</sucChua>
+    <sucChua>10</sucChua>
     <diaChi>Toa B1</diaChi>
     <csvc>
         <csvcName>Ban ghe</csvcName>
@@ -17,7 +17,7 @@
     <ma>A02</ma>
     <ten>Phong hoc A02</ten>
     <loaiPhong>Phong Thu Vien</loaiPhong>
-    <sucChua>50</sucChua>
+    <sucChua>100</sucChua>
     <diaChi>Toa B1</diaChi>
     <csvc>
         <csvcName>Ban ghe</csvcName>
