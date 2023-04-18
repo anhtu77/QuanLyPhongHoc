@@ -54,22 +54,17 @@ public class FileUtils {
 //        }
 //        return null;
 //    }
-    public static List<Object> readXMLFiles(String CLASSROOM_FILE_NAME, Class<?> clazz) {
-    List<Object> objects = new ArrayList<>();
-    String[] fileNames = {"C:\\Users\\admin\\Documents\\JaVa\\QuanLyPhongHoc\\src\\main\\java\\main\\classroom.xml"};
-
-    try {
-        JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        for (String fileName : fileNames) {
-            File xmlFile = new File(fileName);
-            Object obj = jaxbUnmarshaller.unmarshal(xmlFile);
-            objects.add(obj);
+    public static Object readXMLFile(String fileName, Class<?> clazz) {
+        try {
+           
+            File xmlFile = new File("C:\\Users\\admin\\Documents\\BaiTapLon\\QuanLyPhongHoc\\src\\main\\java\\main\\classroom.xml");
+            JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            return jaxbUnmarshaller.unmarshal(xmlFile);
+        } catch (JAXBException e) {
+            e.printStackTrace();
         }
-    } catch (JAXBException e) {
-        e.printStackTrace();
+        return null;
     }
-    return objects;
-}
 
 }

@@ -29,7 +29,7 @@ public class ClassRoomFunc {
     
     public List<ClassRoom> readListClassRoomes() {
         List<ClassRoom> list = new ArrayList<ClassRoom>();
-        ClassRoomXML classroomXML = (ClassRoomXML) FileUtils.readXMLFiles(CLASSROOM_FILE_NAME,
+        ClassRoomXML classroomXML = (ClassRoomXML) FileUtils.readXMLFile(CLASSROOM_FILE_NAME,
                  ClassRoomXML.class);
                 
        if (classroomXML != null) {
