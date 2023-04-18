@@ -161,7 +161,7 @@ public class ClassRoomFunc {
 //        cl.add(cr);
 //        new ClassRoomFunc().readListClassRoomes().forEach(s -> System.out.println(s.toString()));
 //        new ClassRoomFunc().findClassRoomById("A02");
-        System.out.println(new ClassRoomFunc().findClassRoomBySucChua(100));
+        System.out.println(new ClassRoomFunc().findClassRoomBySucChua(50));
         System.out.println(new ClassRoomFunc().findClassRoomById("A01"));
     }
     
