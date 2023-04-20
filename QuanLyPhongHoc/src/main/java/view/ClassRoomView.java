@@ -5,18 +5,129 @@
 package view;
 
 import entity.ClassRoom;
+import func.ClassRoomFunc;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class ClassRoomView extends javax.swing.JFrame {
 
- 
+    ClassRoomFunc clr;
+
     public ClassRoomView() {
         initComponents();
+        clr = new ClassRoomFunc();
+        loadTable();
+        clearForm();
     }
 
+    private void loadTable() {
+        DefaultTableModel dtm = (DefaultTableModel) this.tblClr.getModel();
+        dtm.setRowCount(0);
+
+        List<ClassRoom> ds = this.clr.readListClassRoomes();
+
+        for (ClassRoom d : ds) {
+
+            Object[] rowData = {
+                d.getId(),
+                d.getMa(),
+                d.getTen(),
+                d.getLoaiPhong(),
+                d.getSucChua(),
+                d.getCsvc(),
+                d.getDiaChi(),};
+
+            dtm.addRow(rowData);
+
+        }
+    }
+
+    public void clearForm() {
+        this.txtMa.setText("");
+        this.txtTen.setText("");
+        this.txtLoaiPhong.setText("");
+        this.txtSucChua.setText("");
+        this.cbkDH.setSelected(false);
+        this.cbkMT.setSelected(false);
+        this.cbkMC.setSelected(false);
+        this.cbkS.setSelected(false);
+        this.txtDiaChi.setText("");
+
+    }
+
+    public ClassRoom getFormData() {
+        String ma = this.txtMa.getText();
+        String tenPhong = this.txtTen.getText();
+        String loaiPhong = this.txtLoaiPhong.getText();
+        String sucChua = this.txtSucChua.getText();
+        String dieuHoa = this.cbkDH.getText();
+        String mayTinh = this.cbkMT.getText();
+        String mayChieu = this.cbkMC.getText();
+        String sach = this.cbkS.getText();
+        String diaChi = this.txtDiaChi.getText();
+
+        if (ma.trim().length() == 0
+                || tenPhong.trim().length() == 0
+                || loaiPhong.trim().length() == 0
+                || sucChua.trim().length() == 0
+                || diaChi.trim().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
+            return null;
+        }
+
+//        if (maSV.trim().length() != 7) {
+//            JOptionPane.showMessageDialog(this, "Ma sinh vien phai dung 7 ky tu");
+//            return null;
+//        }
+//        if (maSV.lastIndexOf("Sv") < 0) {
+//            JOptionPane.showMessageDialog(this, "Ma sinh vien is not in the correct format ");
+//            return null;
+//        }
+//
+//        // validate Email
+//        if (!email.matches(isEmail)) {
+//            JOptionPane.showMessageDialog(this, "Email is not in the correct format");
+//            return null;
+//        }
+//        if (email.indexOf("") > 0) {
+//            JOptionPane.showMessageDialog(this, "Email is not in the correct format");
+//            return null;
+//        }
+//        // validate NumberPhone
+//        if (!soDT.matches(isphone)) {
+//            JOptionPane.showMessageDialog(this, "SDT is not in the correct format");
+//            return null;
+//        }
+//        if (soDT.indexOf("") > 0) {
+//            JOptionPane.showMessageDialog(this, "SDT is not in the correct format");
+//            return null;
+//        }
+//        if (hinh.equals("")) {
+//            JOptionPane.showMessageDialog(this, "Images cannot be left blank");
+//            return null;
+//        }
+//
+//        Info_SV sv = new Info_SV(maSV, hoTen, email, soDT, hinh, diaChi, gioiTinh);
+        ClassRoom clr = new ClassRoom();
+        clr.setMa(ma);
+        clr.setTen(tenPhong);
+        clr.setLoaiPhong(loaiPhong);
+        clr.setSucChua(Integer.parseInt(sucChua));
+
+        List<String> lstCsvc = new ArrayList();
+        lstCsvc.add(dieuHoa);
+        lstCsvc.add(mayTinh);
+        lstCsvc.add(mayChieu);
+        lstCsvc.add(sach);
+        clr.setCsvc(lstCsvc);
+        clr.setDiaChi(diaChi);
+
+        return clr;
+
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,12 +151,12 @@ public class ClassRoomView extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         sortName = new javax.swing.JButton();
         sortSC = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        cbkDH = new javax.swing.JCheckBox();
+        cbkMT = new javax.swing.JCheckBox();
+        cbkMC = new javax.swing.JCheckBox();
+        cbkS = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblClr = new javax.swing.JTable();
         txtTimKiem = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnTKMa = new javax.swing.JButton();
@@ -78,6 +189,11 @@ public class ClassRoomView extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtDiaChi);
 
         btnAdd.setText("Thêm");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Sửa");
 
@@ -92,15 +208,15 @@ public class ClassRoomView extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setText("Điều hòa");
+        cbkDH.setText("Điều hòa");
 
-        jCheckBox2.setText("Máy tính");
+        cbkMT.setText("Máy tính");
 
-        jCheckBox3.setText("Máy chiếu");
+        cbkMC.setText("Máy chiếu");
 
-        jCheckBox4.setText("Sách");
+        cbkS.setText("Sách");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblClr.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -111,12 +227,15 @@ public class ClassRoomView extends javax.swing.JFrame {
                 "ID", "Mã phòng học", "Tên phòng học", "Loại phòng học", "Sức chứa", "Tiện nghi", "Địa chỉ"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblClr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tblClrMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblClrMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblClr);
 
         txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,13 +288,13 @@ public class ClassRoomView extends javax.swing.JFrame {
                                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                                                     .addComponent(txtSucChua, javax.swing.GroupLayout.Alignment.LEADING))
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jCheckBox1)
+                                                    .addComponent(cbkDH)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jCheckBox2)
+                                                    .addComponent(cbkMT)
                                                     .addGap(18, 18, 18)
-                                                    .addComponent(jCheckBox3)
+                                                    .addComponent(cbkMC)
                                                     .addGap(18, 18, 18)
-                                                    .addComponent(jCheckBox4))
+                                                    .addComponent(cbkS))
                                                 .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addComponent(jLabel2))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,10 +348,10 @@ public class ClassRoomView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jCheckBox1)
-                        .addComponent(jCheckBox2)
-                        .addComponent(jCheckBox3)
-                        .addComponent(jCheckBox4)))
+                        .addComponent(cbkDH)
+                        .addComponent(cbkMT)
+                        .addComponent(cbkMC)
+                        .addComponent(cbkS)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -260,16 +379,68 @@ public class ClassRoomView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sortSCActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void tblClrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClrMouseClicked
+        int row = this.tblClr.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Phai chon mot dong tren table");
+            return;
+        }
+
+        String id = this.tblClr.getValueAt(row, 0).toString();
+        String maPhong = this.tblClr.getValueAt(row, 1).toString();
+        String tenPhong = this.tblClr.getValueAt(row, 2).toString();
+        String loaiPhong = this.tblClr.getValueAt(row, 3).toString();
+        String sucChua = this.tblClr.getValueAt(row, 4).toString();
+        String csvc = this.tblClr.getValueAt(row, 5).toString();
+        String diaChi = this.tblClr.getValueAt(row, 6).toString();
+
+        // ghi lên textfield
+        this.txtMa.setText(maPhong);
+        this.txtTen.setText(tenPhong);
+        this.txtLoaiPhong.setText(loaiPhong);
+        this.txtSucChua.setText(sucChua);
+        if (csvc.contains("Điều hòa")) {
+            this.cbkDH.setSelected(true);
+        }
+        if (csvc.contains("Máy tính")) {
+            this.cbkMT.setSelected(true);
+        }
+        if (csvc.contains("Máy chiếu")) {
+            this.cbkMC.setSelected(true);
+        }
+        if (csvc.contains("Sách")) {
+            this.cbkS.setSelected(true);
+        }
+        this.txtDiaChi.setText(diaChi);
+
+
+    }//GEN-LAST:event_tblClrMouseClicked
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemActionPerformed
 
+    private void tblClrMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClrMousePressed
+        clearForm();
+    }//GEN-LAST:event_tblClrMousePressed
 
-    
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        try {
+            ClassRoom cl = this.getFormData();
+            if (cl == null) {
+                return;
+            }
+            this.clr.add(cl);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(this, "Thêm thành công ");
+        this.loadTable();
+            this.clearForm();
+    }//GEN-LAST:event_btnAddActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -302,17 +473,17 @@ public class ClassRoomView extends javax.swing.JFrame {
         });
     }
 
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnTKMa;
     private javax.swing.JButton btnTKSC;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox cbkDH;
+    private javax.swing.JCheckBox cbkMC;
+    private javax.swing.JCheckBox cbkMT;
+    private javax.swing.JCheckBox cbkS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -323,9 +494,9 @@ public class ClassRoomView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton sortName;
     private javax.swing.JButton sortSC;
+    private javax.swing.JTable tblClr;
     private javax.swing.JTextPane txtDiaChi;
     private javax.swing.JTextField txtLoaiPhong;
     private javax.swing.JTextField txtMa;

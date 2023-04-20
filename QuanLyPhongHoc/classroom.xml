@@ -8,8 +8,8 @@
         <sucChua>50</sucChua>
         <diaChi>Toa B1</diaChi>
         <csvc>
-            <csvcName>Ban ghe</csvcName>
-            <csvcName>May Tinh</csvcName>
+            <csvcName>Máy chiếu</csvcName>
+            <csvcName>Điều hòa</csvcName>
         </csvc>
     </classroom>
     <classroom>
@@ -20,23 +20,22 @@
         <sucChua>50</sucChua>
         <diaChi>Toa B1</diaChi>
         <csvc>
-            <csvcName>Ban ghe</csvcName>
-            <csvcName>Sach</csvcName>
+            <csvcName>Máy tính</csvcName>
+            <csvcName>Sách</csvcName>
         </csvc>
     </classroom>
     <classroom>
         <id>3</id>
-        <ma>A03</ma>
-        <ten>Phong A03</ten>
-        <loaiPhong>Phong sach</loaiPhong>
-        <sucChua>20</sucChua>
-        <diaChi>Toa B2</diaChi>
+        <ma>adsA</ma>
+        <ten>Sá</ten>
+        <loaiPhong>ấ</loaiPhong>
+        <sucChua>11</sucChua>
+        <diaChi>âSA</diaChi>
         <csvc>
-            <csvcName>Bàn ghế</csvcName>
-            <csvcName>Bảng</csvcName>
-            <csvcName>Máy chiếu</csvcName>
+            <csvcName>Điều hòa</csvcName>
             <csvcName>Máy tính</csvcName>
-            <csvcName>Màn hình</csvcName>
+            <csvcName>Máy chiếu</csvcName>
+            <csvcName>Sách</csvcName>
         </csvc>
     </classroom>
 </classroomes>
