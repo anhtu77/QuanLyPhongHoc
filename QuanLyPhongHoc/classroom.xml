@@ -24,18 +24,4 @@
             <csvcName>Sách</csvcName>
         </csvc>
     </classroom>
-    <classroom>
-        <id>3</id>
-        <ma>DASDAS</ma>
-        <ten>SADA</ten>
-        <loaiPhong>DASDA</loaiPhong>
-        <sucChua>213</sucChua>
-        <diaChi>DASD</diaChi>
-        <csvc>
-            <csvcName>Điều hòa</csvcName>
-            <csvcName>Máy tính</csvcName>
-            <csvcName>Máy chiếu</csvcName>
-            <csvcName>Sách</csvcName>
-        </csvc>
-    </classroom>
 </classroomes>

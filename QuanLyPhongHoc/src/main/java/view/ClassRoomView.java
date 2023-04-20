@@ -21,6 +21,7 @@ public class ClassRoomView extends javax.swing.JFrame {
         clr = new ClassRoomFunc();
         loadTable();
         clearForm();
+        txtID.setEnabled(false);
     }
 
     private void loadTable() {
@@ -46,6 +47,7 @@ public class ClassRoomView extends javax.swing.JFrame {
     }
 
     public void clearForm() {
+        this.txtID.setText("");
         this.txtMa.setText("");
         this.txtTen.setText("");
         this.txtLoaiPhong.setText("");
@@ -59,6 +61,7 @@ public class ClassRoomView extends javax.swing.JFrame {
     }
 
     public ClassRoom getFormData() {
+        String id = this.txtID.getText();
         String ma = this.txtMa.getText();
         String tenPhong = this.txtTen.getText();
         String loaiPhong = this.txtLoaiPhong.getText();
@@ -78,50 +81,30 @@ public class ClassRoomView extends javax.swing.JFrame {
             return null;
         }
 
-//        if (maSV.trim().length() != 7) {
-//            JOptionPane.showMessageDialog(this, "Ma sinh vien phai dung 7 ky tu");
-//            return null;
-//        }
-//        if (maSV.lastIndexOf("Sv") < 0) {
-//            JOptionPane.showMessageDialog(this, "Ma sinh vien is not in the correct format ");
-//            return null;
-//        }
-//
-//        // validate Email
-//        if (!email.matches(isEmail)) {
-//            JOptionPane.showMessageDialog(this, "Email is not in the correct format");
-//            return null;
-//        }
-//        if (email.indexOf("") > 0) {
-//            JOptionPane.showMessageDialog(this, "Email is not in the correct format");
-//            return null;
-//        }
-//        // validate NumberPhone
-//        if (!soDT.matches(isphone)) {
-//            JOptionPane.showMessageDialog(this, "SDT is not in the correct format");
-//            return null;
-//        }
-//        if (soDT.indexOf("") > 0) {
-//            JOptionPane.showMessageDialog(this, "SDT is not in the correct format");
-//            return null;
-//        }
-//        if (hinh.equals("")) {
-//            JOptionPane.showMessageDialog(this, "Images cannot be left blank");
-//            return null;
-//        }
-//
-//        Info_SV sv = new Info_SV(maSV, hoTen, email, soDT, hinh, diaChi, gioiTinh);
         ClassRoom clr = new ClassRoom();
+        clr.setId(Integer.parseInt(id));
         clr.setMa(ma);
         clr.setTen(tenPhong);
         clr.setLoaiPhong(loaiPhong);
         clr.setSucChua(Integer.parseInt(sucChua));
 
         List<String> lstCsvc = new ArrayList();
-        lstCsvc.add(dieuHoa);
-        lstCsvc.add(mayTinh);
-        lstCsvc.add(mayChieu);
-        lstCsvc.add(sach);
+        if (cbkDH.isSelected()) {
+            lstCsvc.add(cbkDH.getText());
+        }
+
+        if (cbkMT.isSelected()) {
+            lstCsvc.add(cbkMT.getText());
+        }
+
+        if (cbkMC.isSelected()) {
+            lstCsvc.add(cbkMC.getText());
+        }
+
+        if (cbkS.isSelected()) {
+            lstCsvc.add(cbkS.getText());
+        }
+
         clr.setCsvc(lstCsvc);
         clr.setDiaChi(diaChi);
 
@@ -161,6 +144,8 @@ public class ClassRoomView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btnTKMa = new javax.swing.JButton();
         btnTKSC = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,8 +181,18 @@ public class ClassRoomView extends javax.swing.JFrame {
         });
 
         btnEdit.setText("Sửa");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Xóa");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         sortName.setText("Sắp xếp theo tên ");
 
@@ -249,6 +244,8 @@ public class ClassRoomView extends javax.swing.JFrame {
 
         btnTKSC.setText("Sức chứa");
 
+        jLabel9.setText("ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,7 +276,8 @@ public class ClassRoomView extends javax.swing.JFrame {
                                                 .addComponent(jLabel4)
                                                 .addComponent(jLabel5)
                                                 .addComponent(jLabel7)
-                                                .addComponent(jLabel6))
+                                                .addComponent(jLabel6)
+                                                .addComponent(jLabel9))
                                             .addGap(36, 36, 36)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,7 +293,9 @@ public class ClassRoomView extends javax.swing.JFrame {
                                                     .addComponent(cbkMC)
                                                     .addGap(18, 18, 18)
                                                     .addComponent(cbkS))
-                                                .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                                    .addComponent(txtMa, javax.swing.GroupLayout.Alignment.LEADING))))
                                         .addComponent(jLabel2))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,8 +305,8 @@ public class ClassRoomView extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnTKMa, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
+                                    .addComponent(btnTKMa, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(btnTKSC)))
                             .addGap(14, 14, 14)))
                     .addGroup(layout.createSequentialGroup()
@@ -321,7 +321,11 @@ public class ClassRoomView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
-                        .addGap(31, 31, 31)
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -395,6 +399,7 @@ public class ClassRoomView extends javax.swing.JFrame {
         String diaChi = this.tblClr.getValueAt(row, 6).toString();
 
         // ghi lên textfield
+        this.txtID.setText(id);
         this.txtMa.setText(maPhong);
         this.txtTen.setText(tenPhong);
         this.txtLoaiPhong.setText(loaiPhong);
@@ -432,40 +437,51 @@ public class ClassRoomView extends javax.swing.JFrame {
                 return;
             }
             this.clr.add(cl);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         JOptionPane.showMessageDialog(this, "Thêm thành công ");
         this.loadTable();
-            this.clearForm();
+        this.clearForm();
     }//GEN-LAST:event_btnAddActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClassRoomView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClassRoomView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClassRoomView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClassRoomView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+       int row = this.tblClr.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Phải chọn 1 hàng trên table");
+            return;
+            
         }
-        //</editor-fold>
+        String ma = txtMa.getText();
+        ClassRoom cl = clr.findClassRoomById(ma);
+        clr.delete(cl);
+         JOptionPane.showMessageDialog(this, "Xóa thành công ");
+        this.loadTable();
+        this.clearForm();
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
-        /* Create and display the form */
+    
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int row = this.tblClr.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Phải chọn 1 hàng trên table");
+            return;
+            
+        }
+        
+        ClassRoom classroom = this.getFormData(); 
+
+        clr.edit(classroom);
+        JOptionPane.showMessageDialog(this, "Sửa thành công ");
+        this.loadTable();
+        this.clearForm();
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    
+    public static void main(String args[]) {
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClassRoomView().setVisible(true);
@@ -492,12 +508,14 @@ public class ClassRoomView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton sortName;
     private javax.swing.JButton sortSC;
     private javax.swing.JTable tblClr;
     private javax.swing.JTextPane txtDiaChi;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtLoaiPhong;
     private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtSucChua;

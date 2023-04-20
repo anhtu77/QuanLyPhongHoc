@@ -57,7 +57,7 @@ public class FileUtils {
     public static Object readXMLFile(String fileName, Class<?> clazz) {
         try {
            
-            File xmlFile = new File("C:\\Users\\admin\\Documents\\BaiTapLon\\QuanLyPhongHoc\\src\\main\\java\\main\\classroom.xml");
+            File xmlFile = new File("C:\\Users\\admin\\Documents\\BaiTapLon\\QuanLyPhongHoc\\classroom.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             return jaxbUnmarshaller.unmarshal(xmlFile);
