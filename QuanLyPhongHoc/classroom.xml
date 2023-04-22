@@ -2,26 +2,71 @@
 <classroomes>
     <classroom>
         <id>1</id>
-        <ma>A01</ma>
-        <ten>Phong hoc A01</ten>
-        <loaiPhong>Phong May</loaiPhong>
-        <sucChua>50</sucChua>
-        <diaChi>Toa B1</diaChi>
+        <ma>A02</ma>
+        <ten>qwewq</ten>
+        <loaiPhong>eqwe</loaiPhong>
+        <sucChua>32</sucChua>
+        <diaChi>wqe</diaChi>
         <csvc>
-            <csvcName>Máy chiếu</csvcName>
             <csvcName>Điều hòa</csvcName>
+            <csvcName>Máy tính</csvcName>
         </csvc>
     </classroom>
     <classroom>
         <id>2</id>
-        <ma>A02</ma>
-        <ten>Phong hoc A02</ten>
-        <loaiPhong>Phong Thu Vien</loaiPhong>
-        <sucChua>50</sucChua>
-        <diaChi>Toa B1</diaChi>
+        <ma>A01</ma>
+        <ten>qwewq</ten>
+        <loaiPhong>eqwe</loaiPhong>
+        <sucChua>32</sucChua>
+        <diaChi>wqe</diaChi>
+        <csvc>
+            <csvcName>Điều hòa</csvcName>
+            <csvcName>Máy tính</csvcName>
+        </csvc>
+    </classroom>
+    <classroom>
+        <id>3</id>
+        <ma>A03</ma>
+        <ten>dasd</ten>
+        <loaiPhong>sadas</loaiPhong>
+        <sucChua>32</sucChua>
+        <diaChi>adas</diaChi>
+        <csvc>
+            <csvcName>Điều hòa</csvcName>
+            <csvcName>Máy tính</csvcName>
+        </csvc>
+    </classroom>
+    <classroom>
+        <id>4</id>
+        <ma>das</ma>
+        <ten>dsad</ten>
+        <loaiPhong>dsa</loaiPhong>
+        <sucChua>21</sucChua>
+        <diaChi>ads</diaChi>
         <csvc>
             <csvcName>Máy tính</csvcName>
-            <csvcName>Sách</csvcName>
+        </csvc>
+    </classroom>
+    <classroom>
+        <id>5</id>
+        <ma>dsa</ma>
+        <ten>ABC</ten>
+        <loaiPhong>eqw</loaiPhong>
+        <sucChua>312</sucChua>
+        <diaChi>das</diaChi>
+        <csvc>
+            <csvcName>Điều hòa</csvcName>
+        </csvc>
+    </classroom>
+    <classroom>
+        <id>6</id>
+        <ma>das</ma>
+        <ten>def</ten>
+        <loaiPhong>mn</loaiPhong>
+        <sucChua>31</sucChua>
+        <diaChi>das</diaChi>
+        <csvc>
+            <csvcName>Máy tính</csvcName>
         </csvc>
     </classroom>
 </classroomes>

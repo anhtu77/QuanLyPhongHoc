@@ -57,6 +57,7 @@ public class ClassRoomView extends javax.swing.JFrame {
         this.cbkMC.setSelected(false);
         this.cbkS.setSelected(false);
         this.txtDiaChi.setText("");
+        this.txtTimKiem.setText("");
 
     }
 
@@ -82,7 +83,6 @@ public class ClassRoomView extends javax.swing.JFrame {
         }
 
         ClassRoom clr = new ClassRoom();
-        clr.setId(Integer.parseInt(id));
         clr.setMa(ma);
         clr.setTen(tenPhong);
         clr.setLoaiPhong(loaiPhong);
@@ -146,6 +146,7 @@ public class ClassRoomView extends javax.swing.JFrame {
         btnTKSC = new javax.swing.JButton();
         txtID = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        btnCL = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,6 +196,11 @@ public class ClassRoomView extends javax.swing.JFrame {
         });
 
         sortName.setText("Sắp xếp theo tên ");
+        sortName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortNameActionPerformed(evt);
+            }
+        });
 
         sortSC.setText("Sắp xếp theo sức chứa");
         sortSC.addActionListener(new java.awt.event.ActionListener() {
@@ -241,10 +247,27 @@ public class ClassRoomView extends javax.swing.JFrame {
         jLabel8.setText("Tìm kiếm");
 
         btnTKMa.setText("Mã phòng");
+        btnTKMa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTKMaActionPerformed(evt);
+            }
+        });
 
         btnTKSC.setText("Sức chứa");
+        btnTKSC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTKSCActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("ID");
+
+        btnCL.setText("ClearForm");
+        btnCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCLActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,7 +288,9 @@ public class ClassRoomView extends javax.swing.JFrame {
                                     .addComponent(btnEdit)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnDelete)
-                                    .addGap(142, 142, 142)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnCL)
+                                    .addGap(49, 49, 49)
                                     .addComponent(sortName))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(56, 56, 56)
@@ -366,7 +391,8 @@ public class ClassRoomView extends javax.swing.JFrame {
                     .addComponent(btnEdit)
                     .addComponent(btnDelete)
                     .addComponent(sortName)
-                    .addComponent(sortSC))
+                    .addComponent(sortSC)
+                    .addComponent(btnCL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -447,41 +473,166 @@ public class ClassRoomView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-       int row = this.tblClr.getSelectedRow();
+        int row = this.tblClr.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Phải chọn 1 hàng trên table");
             return;
-            
+
         }
         String ma = txtMa.getText();
         ClassRoom cl = clr.findClassRoomById(ma);
         clr.delete(cl);
-         JOptionPane.showMessageDialog(this, "Xóa thành công ");
+        JOptionPane.showMessageDialog(this, "Xóa thành công ");
         this.loadTable();
         this.clearForm();
-        
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    
+    public int getId() {
+        int row = tblClr.getSelectedRow();
+        return Integer.parseInt(tblClr.getValueAt(row, 0).toString());
+    }
+
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int row = this.tblClr.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Phải chọn 1 hàng trên table");
             return;
-            
-        }
-        
-        ClassRoom classroom = this.getFormData(); 
 
+        }
+
+        ClassRoom classroom = this.getFormData();
+        int id = getId();
+        classroom.setId(id);
         clr.edit(classroom);
         JOptionPane.showMessageDialog(this, "Sửa thành công ");
         this.loadTable();
         this.clearForm();
     }//GEN-LAST:event_btnEditActionPerformed
 
-    
+    private void btnTKMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTKMaActionPerformed
+        // TODO add your handling code here:
+        try {
+            String ma = txtTimKiem.getText();
+            ClassRoom cl = clr.findClassRoomById(ma);
+            if (this.txtTimKiem.getText().trim().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Mã trống");
+                return;
+            }
+
+            if (cl != null) {
+                this.txtID.setText(String.valueOf(cl.getId()));
+                this.txtMa.setText(cl.getMa());
+                this.txtTen.setText(cl.getTen());
+                this.txtLoaiPhong.setText(cl.getLoaiPhong());
+                this.txtSucChua.setText(String.valueOf(cl.getSucChua()));
+                if (cl.getCsvc().contains("Điều hòa")) {
+                    this.cbkDH.setSelected(true);
+                }
+                if (cl.getCsvc().contains("Máy tính")) {
+                    this.cbkMT.setSelected(true);
+                }
+                if (cl.getCsvc().contains("Máy chiếu")) {
+                    this.cbkMC.setSelected(true);
+                }
+                if (cl.getCsvc().contains("Sách")) {
+                    this.cbkS.setSelected(true);
+                }
+                this.txtDiaChi.setText(cl.getDiaChi());
+
+                int index = this.tblClr.convertRowIndexToView(cl.getId()) - 1;
+                this.tblClr.setRowSelectionInterval(index, index);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Không có phòng học nào có mã: " + this.txtTimKiem.getText());
+                this.clearForm();
+                this.loadTable();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btnTKMaActionPerformed
+
+    private void btnTKSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTKSCActionPerformed
+        // TODO add your handling code here:
+        String succhua = this.txtTimKiem.getText();
+
+        if (succhua.trim().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập sức chứa");
+            return;
+        }
+        List<ClassRoom> ds = this.clr.readListClassRoomes();
+        List<Integer> indexList = new ArrayList<>();
+        boolean a = false;
+        for (int i = 0; i < ds.size(); i++) {
+            ClassRoom d = ds.get(i); // Lấy một thành phần trong Arraylist
+            if (d.getSucChua() == Integer.parseInt(succhua)) {
+//                this.tblClr.setRowSelectionInterval(i, i);
+//                this.getDataTable(i);
+                indexList.add(i);
+                for (int index : indexList) {
+                    this.tblClr.addRowSelectionInterval(index, index);
+                }
+
+                this.getDataTable(indexList.get(0));
+                a = true;
+
+            }
+        }
+        if (a == false) {
+            JOptionPane.showMessageDialog(this, "Không có phòng học nào có sức chứa là: " + this.txtTimKiem.getText());
+            this.clearForm();
+            this.loadTable();
+        }
+
+    }//GEN-LAST:event_btnTKSCActionPerformed
+
+
+    private void btnCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCLActionPerformed
+        tblClr.clearSelection();
+        clearForm();
+    }//GEN-LAST:event_btnCLActionPerformed
+
+    private void sortNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortNameActionPerformed
+        clr.sortClassRoomByName();
+        loadTable();
+        
+    }//GEN-LAST:event_sortNameActionPerformed
+
+    public void getDataTable(int row) {
+        String id = this.tblClr.getValueAt(row, 0).toString();
+        String maPhong = this.tblClr.getValueAt(row, 1).toString();
+        String tenPhong = this.tblClr.getValueAt(row, 2).toString();
+        String loaiPhong = this.tblClr.getValueAt(row, 3).toString();
+        String sucChua = this.tblClr.getValueAt(row, 4).toString();
+        String csvc = this.tblClr.getValueAt(row, 5).toString();
+        String diaChi = this.tblClr.getValueAt(row, 6).toString();
+
+//         ghi lên textfield
+        this.txtID.setText(id);
+        this.txtMa.setText(maPhong);
+        this.txtTen.setText(tenPhong);
+        this.txtLoaiPhong.setText(loaiPhong);
+        this.txtSucChua.setText(sucChua);
+        if (csvc.contains("Điều hòa")) {
+            this.cbkDH.setSelected(true);
+        }
+        if (csvc.contains("Máy tính")) {
+            this.cbkMT.setSelected(true);
+        }
+        if (csvc.contains("Máy chiếu")) {
+            this.cbkMC.setSelected(true);
+        }
+        if (csvc.contains("Sách")) {
+            this.cbkS.setSelected(true);
+        }
+        this.txtDiaChi.setText(diaChi);
+    }
+
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ClassRoomView().setVisible(true);
@@ -492,6 +643,7 @@ public class ClassRoomView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnCL;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnTKMa;

@@ -159,10 +159,16 @@ public class ClassRoomFunc {
 //        ClassRoomFunc cl = new ClassRoomFunc();
 //        ClassRoom cr = new ClassRoom("A03","Phong A03","Phong sach",20,"Toa B2",Arrays.asList("Bàn ghế", "Bảng", "Máy chiếu", "Máy tính", "Màn hình"));
 //        cl.add(cr);
-//        new ClassRoomFunc().readListClassRoomes().forEach(s -> System.out.println(s.toString()));
+       new ClassRoomFunc().readListClassRoomes().forEach(s -> System.out.println(s.getTen()));
+
 //        new ClassRoomFunc().findClassRoomById("A02");
-        System.out.println(new ClassRoomFunc().findClassRoomBySucChua(50));
-        System.out.println(new ClassRoomFunc().findClassRoomById("A01"));
+//        System.out.println(new ClassRoomFunc().findClassRoomBySucChua(32));
+//        System.out.println(new ClassRoomFunc().findClassRoomById("A02"));
+//      
+        System.out.println("/n");
+       new ClassRoomFunc().sortClassRoomByName();
+       new ClassRoomFunc().readListClassRoomes().forEach(s -> System.out.println(s.getTen()));
+
     }
     
 }
