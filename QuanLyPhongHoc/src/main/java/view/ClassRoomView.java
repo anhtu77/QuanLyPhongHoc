@@ -228,6 +228,11 @@ public class ClassRoomView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblClr);
 
+        txtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTimKiemMouseClicked(evt);
+            }
+        });
         txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTimKiemActionPerformed(evt);
@@ -460,6 +465,7 @@ public class ClassRoomView extends javax.swing.JFrame {
             this.clr.add(cl);
 
         } catch (Exception e) {
+            // Ngoại lệ in ra theo phương thức
             e.printStackTrace();
         }
         JOptionPane.showMessageDialog(this, "Thêm thành công ");
@@ -475,6 +481,7 @@ public class ClassRoomView extends javax.swing.JFrame {
 
         }
         String ma = txtMa.getText();
+        // tìm kiếm đối tượng có mã tương ứng trong danh sách
         ClassRoom cl = clr.findClassRoomById(ma);
         clr.delete(cl);
         JOptionPane.showMessageDialog(this, "Xóa thành công ");
@@ -563,8 +570,7 @@ public class ClassRoomView extends javax.swing.JFrame {
         for (int i = 0; i < ds.size(); i++) {
             ClassRoom d = ds.get(i); // Lấy một thành phần trong Arraylist
             if (d.getSucChua() == Integer.parseInt(succhua)) {
-//                this.tblClr.setRowSelectionInterval(i, i);
-//                this.getDataTable(i);
+
                 indexList.add(i);
                 for (int index : indexList) {
                     this.tblClr.addRowSelectionInterval(index, index);
@@ -613,6 +619,11 @@ public class ClassRoomView extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void txtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemMouseClicked
+        clearForm();
+        tblClr.clearSelection();
+    }//GEN-LAST:event_txtTimKiemMouseClicked
 
     public void getDataTable(int row) {
         String id = this.tblClr.getValueAt(row, 0).toString();

@@ -29,14 +29,16 @@ public class ClassRoomFunc {
     public void writeListStudents(List<ClassRoom> classroomes) {
         ClassRoomXML classroomXML = new ClassRoomXML();
         classroomXML.setClassRoom(classroomes);
+        // ghi đối tượng classRoomXML vào 1 CLASSROOM_FILE_NAME
         FileUtils.writeXMLtoFile(CLASSROOM_FILE_NAME, classroomXML);
     }
 
     public List<ClassRoom> readListClassRoomes() {
         List<ClassRoom> list = new ArrayList<ClassRoom>();
+        // Sử dụng lớp tiện ích FileUtils để đọc đối tượng ClassRoomXML từ một tệp tin có tên là CLASSROOM_FILE_NAME.
         ClassRoomXML classroomXML = (ClassRoomXML) FileUtils.readXMLFile(CLASSROOM_FILE_NAME,
                 ClassRoomXML.class);
-
+        // Kiểm tra đối tượng classroomXML khác null, nếu đúng thì lấy danh sách các đối tượng lớp học từ classroomXML và gán vào biến list.
         if (classroomXML != null) {
             list = classroomXML.getClassRoom();
         }
@@ -90,8 +92,11 @@ public class ClassRoomFunc {
     public ClassRoom findClassRoomById(String id) {
         ClassRoom classroom = null;
         try {
+            // tạo ra một đối tượng,  JAXBContext để ánh xạ các lớp Java quá file xml
             JAXBContext context = JAXBContext.newInstance(ClassRoomXML.class);
+            // Tạo một đối tượng Unmarshaller để giải mã tài liệu xml thành các đối tượng java
             Unmarshaller unmarshaller = context.createUnmarshaller();
+            // Sử dụng unmarshaller để giải mã tài liệu XML chứa danh sách ClassRoom từ tệp được chỉ định bởi CLASSROOM_FILE_NAME.
             ClassRoomXML ClassRoomXML = (ClassRoomXML) unmarshaller.unmarshal(new File(CLASSROOM_FILE_NAME));
             for (ClassRoom cr : ClassRoomXML.getClassRoom()) {
                 if (cr.getMa().equals(id)) {

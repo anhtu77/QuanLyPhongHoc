@@ -24,23 +24,12 @@
         </csvc>
     </classroom>
     <classroom>
-        <id>3</id>
-        <ma>đá</ma>
-        <ten>đaf</ten>
-        <loaiPhong>fdfd</loaiPhong>
-        <sucChua>2122</sucChua>
-        <diaChi>đấ</diaChi>
-        <csvc>
-            <csvcName>Điều hòa</csvcName>
-        </csvc>
-    </classroom>
-    <classroom>
         <id>4</id>
-        <ma>đas</ma>
-        <ten>kmkl</ten>
-        <loaiPhong>fdsf</loaiPhong>
+        <ma>đá</ma>
+        <ten>đá</ten>
+        <loaiPhong>đas</loaiPhong>
         <sucChua>23</sucChua>
-        <diaChi>kmsc</diaChi>
+        <diaChi>đádá</diaChi>
         <csvc>
             <csvcName>Điều hòa</csvcName>
         </csvc>

@@ -34,26 +34,7 @@ public class FileUtils {
         }
     }
 
-    /**
-     * Đọc nội dung fileName, sau đó chuyển đổi nội dung của file 
-     * thành đối tượng có kiểu là clazz.
-     * 
-     * @param fileName
-     * @param clazz
-     * @return
-     */
-//    public static Object readXMLFile(String fileName, Class<?> clazz) {
-//        try {
-//           
-//            File xmlFile = new File("C:\\Users\\admin\\Documents\\JaVa\\BaiTapLon\\src\\main\\java\\main\\student.xml");
-//            JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
-//            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-//            return jaxbUnmarshaller.unmarshal(xmlFile);
-//        } catch (JAXBException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+ 
     public static Object readXMLFile(String fileName, Class<?> clazz) {
         try {
            
