@@ -3,10 +3,10 @@
     <classroom>
         <id>1</id>
         <ma>A02</ma>
-        <ten>qwewq</ten>
-        <loaiPhong>eqwe</loaiPhong>
+        <ten>Phòng A02</ten>
+        <loaiPhong>Phòng máy</loaiPhong>
         <sucChua>32</sucChua>
-        <diaChi>wqe</diaChi>
+        <diaChi>B2</diaChi>
         <csvc>
             <csvcName>Điều hòa</csvcName>
             <csvcName>Máy tính</csvcName>
@@ -14,33 +14,34 @@
     </classroom>
     <classroom>
         <id>2</id>
-        <ma>fsdfs</ma>
-        <ten>fsdf</ten>
-        <loaiPhong>fdgdf</loaiPhong>
-        <sucChua>112</sucChua>
-        <diaChi>gh</diaChi>
+        <ma>A03</ma>
+        <ten>Phòng A03</ten>
+        <loaiPhong>Phòng máy</loaiPhong>
+        <sucChua>500</sucChua>
+        <diaChi>B1</diaChi>
         <csvc>
             <csvcName>Điều hòa</csvcName>
+            <csvcName>Máy tính</csvcName>
         </csvc>
     </classroom>
     <classroom>
         <id>3</id>
-        <ma>đá</ma>
-        <ten>đaf</ten>
-        <loaiPhong>fdfd</loaiPhong>
-        <sucChua>2122</sucChua>
-        <diaChi>đấ</diaChi>
+        <ma>asd</ma>
+        <ten>das</ten>
+        <loaiPhong>Phòng máy</loaiPhong>
+        <sucChua>21</sucChua>
+        <diaChi>das</diaChi>
         <csvc>
             <csvcName>Điều hòa</csvcName>
         </csvc>
     </classroom>
     <classroom>
         <id>4</id>
-        <ma>đas</ma>
-        <ten>kmkl</ten>
-        <loaiPhong>fdsf</loaiPhong>
-        <sucChua>23</sucChua>
-        <diaChi>kmsc</diaChi>
+        <ma>dsa</ma>
+        <ten>asd</ten>
+        <loaiPhong>Phòng máy</loaiPhong>
+        <sucChua>32</sucChua>
+        <diaChi>dasdas</diaChi>
         <csvc>
             <csvcName>Điều hòa</csvcName>
         </csvc>
