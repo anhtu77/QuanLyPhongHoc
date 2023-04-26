@@ -492,6 +492,8 @@ public class ClassRoomView extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Thêm thành công ");
         this.loadTable();
         this.clearForm();
+
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -536,7 +538,10 @@ public class ClassRoomView extends javax.swing.JFrame {
         // Lấy table model của table và lưu trữ trong biến model
         String ma = this.txtTimKiem.getText();
         ClassRoom cl = clr.findClassRoomById(ma);
-
+         if (ma.trim().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập mã");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) tblClr.getModel();
 
         // Xóa các dòng dữ liệu cũ trên table
@@ -636,8 +641,8 @@ public class ClassRoomView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTimKiemKeyReleased
 
     private void btnRFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRFActionPerformed
-      clearForm();
-      loadTable();
+        clearForm();
+        loadTable();
     }//GEN-LAST:event_btnRFActionPerformed
 
     public void getDataTable(int row) {

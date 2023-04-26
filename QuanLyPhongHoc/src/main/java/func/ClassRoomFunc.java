@@ -91,7 +91,7 @@ public class ClassRoomFunc {
 
 
     public ClassRoom findClassRoomById(String id) {
-        ClassRoom classroom = null;
+       ClassRoom classroom = null;
         try {
             // tạo ra một đối tượng,  JAXBContext để ánh xạ các lớp Java quá file xml
             JAXBContext context = JAXBContext.newInstance(ClassRoomXML.class);
@@ -100,7 +100,7 @@ public class ClassRoomFunc {
             // Sử dụng unmarshaller để giải mã tài liệu XML chứa danh sách ClassRoom từ tệp được chỉ định bởi CLASSROOM_FILE_NAME.
             ClassRoomXML ClassRoomXML = (ClassRoomXML) unmarshaller.unmarshal(new File(CLASSROOM_FILE_NAME));
             for (ClassRoom cr : ClassRoomXML.getClassRoom()) {
-                if (cr.getMa().equals(id)) {
+                if (cr.getMa().contains(id)) {
                     classroom = cr;
                     break;
                 }
@@ -110,39 +110,8 @@ public class ClassRoomFunc {
         }
         return classroom;
     }
+
     
-//   public ClassRoom findClassRoomByMa(String ma) {
-//    ClassRoom classroom = null;
-//    try {
-//        JAXBContext context = JAXBContext.newInstance(ClassRoomXML.class);
-//        Unmarshaller unmarshaller = context.createUnmarshaller();
-//        ClassRoomXML classRoomXML = (ClassRoomXML) unmarshaller.unmarshal(new File(CLASSROOM_FILE_NAME));
-//        List<ClassRoom> classRooms = classRoomXML.getClassRoom();
-//        int left = 0, right = classRooms.size() - 1;
-//        while (left <= right) {
-//            int mid = (left + right) / 2;
-//            ClassRoom cr = classRooms.get(mid);
-//            int cmp = cr.getMa().compareTo(ma);
-//            if (cmp == 0) {
-//                classroom = cr;
-//                break;
-//            } else if (cmp < 0) {
-//                left = mid + 1;
-//            } else {
-//                right = mid - 1;
-//            }
-//        }
-//        if (classroom == null) {
-//            classroom = classRooms.get(left > right ? left : right);
-//        }
-//        if (!classroom.getMa().startsWith(ma)) {
-//            classroom = null;
-//        }
-//    } catch (JAXBException e) {
-//        e.printStackTrace();
-//    }
-//    return classroom;
-//}
 
     
 
