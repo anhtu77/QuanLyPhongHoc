@@ -143,9 +143,6 @@ public class ClassRoomFunc {
         this.listClassroomes = listClassroomes;
     }
 
-    public static void main(String[] args) {
-
-
-    }
+ 
 
 }
