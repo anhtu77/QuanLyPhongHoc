@@ -675,14 +675,6 @@ public class ClassRoomView extends javax.swing.JFrame {
         this.txtDiaChi.setText(diaChi);
     }
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ClassRoomView().setVisible(true);
-            }
-        });
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
