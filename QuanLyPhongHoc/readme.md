@@ -17,7 +17,12 @@ Thông kê tổng số phòng học
 Sau khi cài đặt JDK, bạn cần cài đặt các công cụ phát triển Java như Apache Maven và Spring Boot.
 Bạn cần có IDE như Apache Netbeans IDE , hay Intellij IDEA để chạy.
 Sau khi cài đặt các công cụ phát triển Java, bạn có thể tải mã nguồn của phần mềm từ kho lưu trữ Git và sử dụng Maven để biên dịch
-Sửa địa chỉ file classroom.xml ở file FileUtils 
 Sau khi cài đặt các phần mềm trên, bạn có thể chạy ứng dụng
+
+### Đăng nhập phần mềm
+Tên đăng nhập: admin
+pass: admin
+
+
 
 
